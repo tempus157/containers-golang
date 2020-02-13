@@ -18,11 +18,19 @@ func (node *Node) List() *LinkedList {
 
 // Next gets the next node in the LinkedList.
 func (node *Node) Next() *Node {
+	if node.next.isDummy {
+		return nil
+	}
+
 	return node.next
 }
 
 // Prev gets the previous node in the LinkedList.
 func (node *Node) Prev() *Node {
+	if node.prev.isDummy {
+		return nil
+	}
+
 	return node.prev
 }
 
