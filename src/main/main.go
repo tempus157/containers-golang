@@ -13,7 +13,7 @@ func main() {
 	list.AddValLast(4)
 	list.AddValLast(5)
 
-	for val := range list.Iter() {
-		fmt.Println(val.Val())
-	}
+	fmt.Println(list)
+	list.Clear()
+	fmt.Println(list)
 }
