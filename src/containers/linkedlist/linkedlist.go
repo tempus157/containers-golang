@@ -101,7 +101,7 @@ func (list *LinkedList) AddValLast(val Value) (*Node, error) {
 // Clear removes all nodes from the LinkedList.
 func (list *LinkedList) Clear() {
 	for {
-		if err := list.RemoveFirst(); err != nil {
+		if list.RemoveFirst() != nil {
 			break
 		}
 	}
