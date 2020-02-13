@@ -62,11 +62,19 @@ func (list *LinkedList) AddValAfter(node *Node, val Value) (*Node, error) {
 
 // AddBefore adds the specified new node before the specified existing node in the LinkedList.
 func (list *LinkedList) AddBefore(node, newNode *Node) error {
+	if node == nil {
+		return fmt.Errorf("node is nil")
+	}
+
 	return list.AddAfter(node.prev, newNode)
 }
 
 // AddValBefore adds a new node containing the specified value before the specified existing node in the LinkedList.
 func (list *LinkedList) AddValBefore(node *Node, val Value) (*Node, error) {
+	if node == nil {
+		return fmt.Errorf("node is nil")
+	}
+
 	return list.AddValAfter(node.prev, val)
 }
 
