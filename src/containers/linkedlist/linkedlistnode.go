@@ -34,6 +34,11 @@ func (node *Node) Prev() *Node {
 	return node.prev
 }
 
+// SetVal sets the value contained in the node.
+func (node *Node) SetVal(newVal Value) {
+	node.val = newVal
+}
+
 // Val gets the value contained in the node.
 func (node *Node) Val() Value {
 	return node.val
