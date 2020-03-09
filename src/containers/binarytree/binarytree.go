@@ -1,5 +1,12 @@
 package binarytree
 
+// Order odr
+const (
+	Preorder = iota
+	Inorder
+	Postorder
+)
+
 // Value is the ultimate vase type of all Golang types.
 type Value interface{}
 
@@ -39,6 +46,31 @@ func (tree *BinaryTree) Clear() {
 	tree.val = nil
 	tree.RemoveLeft()
 	tree.RemoveRight()
+}
+
+// Iter iterates through the BinaryTree.
+func (tree *BinaryTree) Iter() <-chan *BinaryTree {
+	ch := make(chan *BinaryTree)
+
+	go func() {
+		defer close(ch)
+
+		if tree.left != nil {
+			for v := range tree.left.Iter() {
+				ch <- v
+			}
+		}
+
+		ch <- tree
+
+		if tree.right != nil {
+			for v := range tree.right.Iter() {
+				ch <- v
+			}
+		}
+	}()
+
+	return ch
 }
 
 // RemoveLeft removes the binary tree at the left of the BinaryTree.
